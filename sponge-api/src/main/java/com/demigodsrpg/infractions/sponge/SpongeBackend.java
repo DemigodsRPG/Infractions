@@ -29,6 +29,6 @@ public class SpongeBackend implements Backend {
 
     @Override
     public InfractionsPlayer getPlayer(String playerId) {
-        return new SpongePlayer(game.getPlayer(UUID.fromString(playerId)));
+        return new SpongePlayer(game, UUID.fromString(playerId));
     }
 }

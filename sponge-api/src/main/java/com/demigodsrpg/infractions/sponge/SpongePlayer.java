@@ -2,14 +2,18 @@ package com.demigodsrpg.infractions.sponge;
 
 import com.demigodsrpg.infractions.InfractionsPlayer;
 import com.google.common.base.Optional;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.player.Player;
 
 import java.util.UUID;
 
 public final class SpongePlayer extends InfractionsPlayer {
+    private final Game game;
     private final Player player;
 
-    public SpongePlayer(Optional<Player> player) {
+    public SpongePlayer(Game game, UUID playerId) {
+        this.game = game;
+        Optional<Player> player = game.getPlayer(playerId);
         if (!player.isPresent()) {
             throw new NullPointerException("Player cannot be null.");
         }
@@ -49,5 +53,10 @@ public final class SpongePlayer extends InfractionsPlayer {
     @Override
     public boolean isOnline() {
         return player.isOnline();
+    }
+
+    @Deprecated
+    public Game getGame() {
+        return game;
     }
 }
