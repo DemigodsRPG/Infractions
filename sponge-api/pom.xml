@@ -9,41 +9,28 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Infractions Bungee Plugin</name>
-    <artifactId>infractions-bungee</artifactId>
+    <name>Infractions Sponge API</name>
+    <artifactId>infractions-sponge-api</artifactId>
     <version>${parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <bungee.version>1.8-SNAPSHOT</bungee.version>
+        <sponge.version>1.0</sponge.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>md_5-releases</id>
-            <url>http://repo.md-5.net/content/repositories/snapshots</url>
+            <id>sponge-repo</id>
+            <url>http://repo.spongepowered.org/Sponge/maven/</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- BungeeCord -->
+        <!-- Sponge API -->
         <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-api</artifactId>
-            <version>${bungee.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-chat</artifactId>
-            <version>${bungee.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-config</artifactId>
-            <version>${bungee.version}</version>
-            <scope>provided</scope>
+            <groupId>org.spongepowered</groupId>
+            <artifactId>spongeapi</artifactId>
+            <version>${sponge.version}</version>
         </dependency>
 
         <!-- Infractions Base -->
@@ -56,19 +43,9 @@
     </dependencies>
 
     <build>
-        <finalName>InfractionsBungee</finalName>
+        <finalName>InfractionsSpongeAPI</finalName>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
-        <resources>
-            <resource>
-                <targetPath>.</targetPath>
-                <filtering>true</filtering>
-                <directory>${basedir}/src/main/resources/</directory>
-                <includes>
-                    <include>*.yml</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -86,13 +63,6 @@
                                     <include>com.demigodsrpg.infractions:infractions-base</include>
                                 </includes>
                             </artifactSet>
-                            <relocations>
-                                <!-- Included with the server -->
-                                <relocation>
-                                    <pattern>com.iciql</pattern>
-                                    <shadedPattern>com.demigodsrpg.infractions.util.com.iciql</shadedPattern>
-                                </relocation>
-                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
