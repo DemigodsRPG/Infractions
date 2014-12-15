@@ -52,7 +52,12 @@ public final class PlayerRecord {
         InfractionsConfig config = backend.getConfig();
 
         if (getScore() > config.maxScore()) {
-            player.kick(config.banMessage());
+            String banMessage = config.banMessage();
+            if (config.canKick()) {
+                player.kick(banMessage);
+            } else {
+                player.sendMessage(banMessage);
+            }
             return RecordModifyResult.SHOULD_BAN;
         } else if (getScore() > before) {
             String warnMessage = config.warnMessage();
