@@ -1,18 +1,15 @@
-package me.hqm.infractions;
+package com.demigodsrpg.infractions;
 
 import com.iciql.Iciql;
 
-import javax.annotation.concurrent.Immutable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
- * Infractions are immutable, simple records of a player's behavior.
+ * Infractions are immutable and simple records of a player's behavior.
  */
-
-@Immutable
 @Iciql.IQTable(name = "infraction")
-public class Infraction {
+public final class Infraction {
     // -- IMPORTANT DATA -- //
 
     @Iciql.IQColumn(name = "key", primaryKey = true, autoIncrement = true)
@@ -21,8 +18,8 @@ public class Infraction {
     int value;
     @Iciql.IQColumn(name = "time")
     Timestamp timeStamp;
-    @Iciql.IQColumn(name = "active")
-    boolean active;
+    @Iciql.IQColumn(name = "origin", length = 255)
+    String origin;
     @Iciql.IQColumn(name = "reason", length = 255)
     String reason;
     @Iciql.IQColumn(name = "proof", length = 510)
@@ -36,11 +33,10 @@ public class Infraction {
         // Empty constructor for Iciql.
     }
 
-    public Infraction(int key, int value, long time, boolean active, String reason, String proof, UUID player) {
-        this.key = key;
+    public Infraction(int value, long time, String origin, String reason, String proof, UUID player) {
         this.value = value;
         timeStamp = new Timestamp(time);
-        this.active = active;
+        this.origin = origin;
         this.reason = reason;
         this.proof = proof;
         this.player = player.toString();
@@ -60,8 +56,8 @@ public class Infraction {
         return timeStamp;
     }
 
-    public boolean isActive() {
-        return active;
+    public String getOrigin() {
+        return origin;
     }
 
     public String getReason() {
@@ -78,6 +74,10 @@ public class Infraction {
 
     public UUID getPlayer() {
         return UUID.fromString(player);
+    }
+
+    public PlayerRecord getPlayerRecord(Backend backend) {
+        return new PlayerRecord(backend, player);
     }
 }
 
