@@ -46,11 +46,27 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Infractions Base -->
         <dependency>
             <groupId>com.demigodsrpg</groupId>
             <artifactId>infractions-base</artifactId>
             <version>${version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- BitlyJ -->
+        <dependency>
+            <groupId>com.rosaloves</groupId>
+            <artifactId>bitlyj</artifactId>
+            <version>2.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -84,13 +100,17 @@
                             <artifactSet>
                                 <includes>
                                     <include>com.demigodsrpg.infractions:infractions-base</include>
+                                    <include>com.rosaloves:bitlyj</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
-                                <!-- Included with the server -->
                                 <relocation>
                                     <pattern>com.iciql</pattern>
                                     <shadedPattern>com.demigodsrpg.infractions.util.com.iciql</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.rosaloves</pattern>
+                                    <shadedPattern>com.demigodsrpg.infractions.util.com.rosaloves</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

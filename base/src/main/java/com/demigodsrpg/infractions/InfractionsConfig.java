@@ -8,6 +8,14 @@ public interface InfractionsConfig {
 
     int maxScore();
 
+    boolean requireProof();
+
+    boolean useBitly();
+
+    String bitlyUser();
+
+    String bitlyKey();
+
     boolean canKick();
 
     String warnMessage();

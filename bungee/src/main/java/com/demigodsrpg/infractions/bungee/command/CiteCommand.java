@@ -15,7 +15,14 @@ public class CiteCommand extends BaseCommand {
     @Override
     public CommandResult onCommand(CommandSender sender, String[] args) {
         if (sender instanceof ProxiedPlayer) {
-
+            if (sender.hasPermission("infractions.mod")) {
+                // Does the cite require proof?
+                if (backend.getConfig().requireProof()) {
+                    // TODO
+                }
+            } else {
+                return CommandResult.NO_PERMISSIONS;
+            }
         }
         return CommandResult.PLAYER_ONLY;
     }

@@ -1,0 +1,28 @@
+# This is the default config file for the Infractions BungeeCord Implementation
+# This is not the end all of all customization, we recommend using the spigot/sponge API on each server with a custom plugin.
+# @authors: HmmmQuestionMark
+
+# Database
+database:
+  url: 'postgresql://localhost:5432/minecraft?user=minecraft&password=minecraft'
+
+# Maximum values
+max:
+  score: 100
+
+# Proof settings
+proof:
+  require: true
+  bitly:
+    use: true
+    username: ''
+    key: ''
+
+# Allowances
+can:
+  kick: true
+
+# Messages
+message:
+  warn: 'You have recieved an infraction. Reason: %reason%.'
+  ban: 'You have been banned for reaching the maximum infractions score.'

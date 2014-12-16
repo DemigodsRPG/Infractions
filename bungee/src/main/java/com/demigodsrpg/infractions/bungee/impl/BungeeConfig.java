@@ -47,6 +47,26 @@ public class BungeeConfig implements InfractionsConfig {
     }
 
     @Override
+    public boolean requireProof() {
+        return configuration.getBoolean("proof.require");
+    }
+
+    @Override
+    public boolean useBitly() {
+        return configuration.getBoolean("proof.bitly.use");
+    }
+
+    @Override
+    public String bitlyUser() {
+        return configuration.getString("proof.bitly.username");
+    }
+
+    @Override
+    public String bitlyKey() {
+        return configuration.getString("proof.bitly.key");
+    }
+
+    @Override
     public boolean canKick() {
         return configuration.getBoolean("can.kick");
     }

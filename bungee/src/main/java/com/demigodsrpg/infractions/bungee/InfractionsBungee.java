@@ -4,6 +4,7 @@ import com.demigodsrpg.infractions.Backend;
 import com.demigodsrpg.infractions.bungee.command.*;
 import com.demigodsrpg.infractions.bungee.impl.BungeeBackend;
 import com.demigodsrpg.infractions.bungee.impl.BungeeConfig;
+import com.demigodsrpg.infractions.bungee.util.UrlUtil;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -23,6 +24,9 @@ public class InfractionsBungee extends Plugin {
 
         // Backend
         Backend backend = new BungeeBackend(config);
+
+        // Register Utils
+        UrlUtil.reg(backend);
 
         // Commands
         manager.registerCommand(this, new InfractionsCommand());
