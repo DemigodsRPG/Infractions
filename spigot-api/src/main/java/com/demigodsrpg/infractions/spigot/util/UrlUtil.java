@@ -1,7 +1,7 @@
-package com.demigodsrpg.infractions.bungee.util;
+package com.demigodsrpg.infractions.spigot.util;
 
 import com.demigodsrpg.infractions.Backend;
-import com.demigodsrpg.infractions.InfractionsConfig;
+import com.demigodsrpg.infractions.Options;
 import com.rosaloves.bitlyj.Bitly;
 import com.rosaloves.bitlyj.Url;
 
@@ -12,11 +12,11 @@ import static com.rosaloves.bitlyj.Bitly.as;
 import static com.rosaloves.bitlyj.Bitly.shorten;
 
 public class UrlUtil {
-    private static InfractionsConfig config;
+    private static Options OPTIONS;
 
     public static void reg(Backend backend) {
-        if (config == null) {
-            UrlUtil.config = backend.getConfig();
+        if (OPTIONS == null) {
+            UrlUtil.OPTIONS = backend.getOptions();
         }
     }
 
@@ -26,9 +26,9 @@ public class UrlUtil {
      * @return String
      */
     public static String shortenUrl(String input) {
-        if (!config.useBitly()) return input;
+        if (!OPTIONS.useBitly()) return input;
         if (!input.startsWith("http://") && !input.startsWith("https://")) input = ("http://" + input);
-        Bitly.Provider bitly = as(config.bitlyUser(), config.bitlyKey());
+        Bitly.Provider bitly = as(OPTIONS.bitlyUser(), OPTIONS.bitlyKey());
         Url shortUrl = bitly.call(shorten(input));
         return shortUrl.getShortUrl();
     }

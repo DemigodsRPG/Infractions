@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * A simple abstract class to interact with a player in a supported game.
  */
-public abstract class InfractionsPlayer {
+public abstract class Human {
     // -- SEND INFORMATION -- //
     public abstract void sendMessage(String message);
 
@@ -23,7 +23,7 @@ public abstract class InfractionsPlayer {
     public abstract boolean isOnline();
 
     public boolean shouldBan(Backend backend) {
-        return getPlayerRecord(backend).getScore() >= backend.getConfig().maxScore();
+        return getPlayerRecord(backend).getScore() >= backend.getOptions().maxScore();
     }
 
     // -- GET INFRACTION INFO -- //

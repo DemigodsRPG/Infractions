@@ -1,19 +1,20 @@
 package com.demigodsrpg.infractions.sponge;
 
-import com.demigodsrpg.infractions.InfractionsPlayer;
+import com.demigodsrpg.infractions.Human;
 import com.google.common.base.Optional;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.text.Texts;
 
 import java.util.UUID;
 
-public final class SpongePlayer extends InfractionsPlayer {
+public final class SpongePlayer extends Human {
     private final Game game;
     private final Player player;
 
     public SpongePlayer(Game game, UUID playerId) {
         this.game = game;
-        Optional<Player> player = game.getPlayer(playerId);
+        Optional<Player> player = game.getServer().getPlayer(playerId);
         if (!player.isPresent()) {
             throw new NullPointerException("Player cannot be null.");
         }
@@ -22,17 +23,17 @@ public final class SpongePlayer extends InfractionsPlayer {
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(message);
+        player.sendMessage(Texts.of(message));
     }
 
     @Override
     public void sendMessage(String[] message) {
-        player.sendMessage(message);
+        player.sendMessage(Texts.of(message));
     }
 
     @Override
     public void kick(String message) {
-        // FIXME player.kick(message);
+        player.kick(Texts.of(message));
     }
 
     @Override
@@ -47,7 +48,7 @@ public final class SpongePlayer extends InfractionsPlayer {
 
     @Override
     public String getDisplayName() {
-        return player.getDisplayName();
+        return Texts.toLegacy(player.getDisplayNameData().getDisplayName());
     }
 
     @Override

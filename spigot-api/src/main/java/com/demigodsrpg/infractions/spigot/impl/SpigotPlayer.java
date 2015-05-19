@@ -1,11 +1,11 @@
-package com.demigodsrpg.infractions.spigot;
+package com.demigodsrpg.infractions.spigot.impl;
 
-import com.demigodsrpg.infractions.InfractionsPlayer;
+import com.demigodsrpg.infractions.Human;
 import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
 
-public final class SpigotPlayer extends InfractionsPlayer {
+public final class SpigotPlayer extends Human {
     private final OfflinePlayer player;
 
     // -- CONSTRUCTOR -- //

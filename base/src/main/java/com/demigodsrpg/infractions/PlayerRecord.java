@@ -30,7 +30,7 @@ public final class PlayerRecord {
     public RecordModifyResult updateInfraction(Backend backend, Infraction infraction) {
         int before = getScore();
 
-        Db db = Db.open(backend.getConfig().databaseUrl());
+        Db db = Db.open(backend.getOptions().databaseUrl());
         db.update(infraction);
         db.close();
 
@@ -48,8 +48,8 @@ public final class PlayerRecord {
     }
 
     private RecordModifyResult processChange(int before) {
-        InfractionsPlayer player = backend.getPlayer(playerId);
-        InfractionsConfig config = backend.getConfig();
+        Human player = backend.getPlayer(playerId);
+        Options config = backend.getOptions();
 
         if (getScore() > config.maxScore()) {
             String banMessage = config.banMessage();

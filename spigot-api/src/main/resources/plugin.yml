@@ -1,0 +1,28 @@
+name: Infractions
+main: com.demigodsrpg.infractions.spigot.InfractionsSpigot
+version: ${project.version}
+authors: [HmmmQuestionMark]
+commands:
+  infractions:
+    use: /infractions
+    aliases: [infraction]
+  history:
+    use: /history [player]
+  cite:
+    use: /cite <player> <reason> [proof]
+  uncite:
+    use: /uncite <player>
+    aliases: [ucite]
+permissions:
+  infractions.history.self:
+    default: true
+  infractions.history.others:
+    default: op
+  infractions.history.clear:
+    default: op
+  infractions.cite:
+    default: op
+  infractions.uncite:
+    default: op
+  infractions.excluded:
+    default: false

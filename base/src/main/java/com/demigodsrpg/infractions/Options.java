@@ -3,7 +3,7 @@ package com.demigodsrpg.infractions;
 /**
  * Interface for a config object.
  */
-public interface InfractionsConfig {
+public interface Options {
     String databaseUrl();
 
     int maxScore();

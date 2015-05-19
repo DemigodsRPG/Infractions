@@ -3,9 +3,9 @@ package com.demigodsrpg.infractions;
 import com.iciql.Db;
 
 public interface Backend {
-    InfractionsConfig getConfig();
+    Options getOptions();
 
     Db openDb();
 
-    InfractionsPlayer getPlayer(String playerId);
+    Human getPlayer(String playerId);
 }
