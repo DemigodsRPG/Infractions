@@ -14,7 +14,7 @@ import static com.rosaloves.bitlyj.Bitly.shorten;
 public class UrlUtil {
     private static Options OPTIONS;
 
-    public static void reg(Backend backend) {
+    public static void init(Backend backend) {
         if (OPTIONS == null) {
             UrlUtil.OPTIONS = backend.getOptions();
         }

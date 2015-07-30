@@ -19,7 +19,7 @@ public class InfractionsSpigot extends JavaPlugin {
         BACKEND = new SpigotBackend(new SpigotOptions(this));
 
         // Register Utils
-        UrlUtil.reg(BACKEND);
+        UrlUtil.init(BACKEND);
 
         // Commands
         getCommand("infractions").setExecutor(new InfractionsCommand(BACKEND));

@@ -2,6 +2,7 @@ name: Infractions
 main: com.demigodsrpg.infractions.spigot.InfractionsSpigot
 version: ${project.version}
 authors: [HmmmQuestionMark]
+depends: [Chitchat]
 commands:
   infractions:
     use: /infractions

@@ -10,8 +10,8 @@
     <version>2.0.0-SNAPSHOT</version>
     <modules>
         <module>base</module>
-        <module>spigot-api</module>
-        <module>sponge-api</module>
+        <module>spigot</module>
+        <module>sponge</module>
     </modules>
 
     <name>Infractions Parent</name>
@@ -21,20 +21,6 @@
     <properties> <!-- It is important to keep up to date manually. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <developers>
-        <developer>
-            <id>HmmmQuestionMark</id>
-            <organizationUrl>http://hqm.me/</organizationUrl>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <properties>
-                <skype>HmmmQuestionMark</skype>
-            </properties>
-            <timezone>-4</timezone>
-        </developer>
-    </developers>
 
     <build>
         <defaultGoal>clean install</defaultGoal>

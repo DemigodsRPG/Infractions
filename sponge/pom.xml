@@ -9,37 +9,28 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Infractions Spigot API</name>
-    <artifactId>infractions-spigot-api</artifactId>
+    <name>Infractions for Sponge</name>
+    <artifactId>infractions-sponge</artifactId>
     <version>${parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.8.4-R0.1-SNAPSHOT</spigot.version>
+        <sponge.version>2.1-SNAPSHOT</sponge.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>spigot-releases</id>
-            <url>http://hub.spigotmc.org/nexus/content/repositories/public</url>
+            <id>sponge-repo</id>
+            <url>http://repo.spongepowered.org/Sponge/maven/</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Spigot API -->
+        <!-- Sponge API -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-            <scope>provided</scope>
+            <groupId>org.spongepowered</groupId>
+            <artifactId>spongeapi</artifactId>
+            <version>${sponge.version}</version>
         </dependency>
 
         <!-- Infractions Base -->
@@ -49,18 +40,10 @@
             <version>${version}</version>
             <scope>compile</scope>
         </dependency>
-
-        <!-- BitlyJ -->
-        <dependency>
-            <groupId>com.rosaloves</groupId>
-            <artifactId>bitlyj</artifactId>
-            <version>2.0.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
-        <finalName>InfractionsSpigotAPI</finalName>
+        <finalName>InfractionsSpongeAPI</finalName>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
         <plugins>

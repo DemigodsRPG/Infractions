@@ -9,28 +9,46 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Infractions Sponge API</name>
-    <artifactId>infractions-sponge-api</artifactId>
+    <name>Infractions for Spigot</name>
+    <artifactId>infractions-spigot</artifactId>
     <version>${parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sponge.version>2.1-SNAPSHOT</sponge.version>
+        <spigot.version>1.8.8-R0.1-SNAPSHOT</spigot.version>
+        <chitchat.version>2.0-SNAPSHOT</chitchat.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>sponge-repo</id>
-            <url>http://repo.spongepowered.org/Sponge/maven/</url>
+            <id>spigot-releases</id>
+            <url>http://hub.spigotmc.org/nexus/content/repositories/public</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Sponge API -->
+        <!-- Spigot API -->
         <dependency>
-            <groupId>org.spongepowered</groupId>
-            <artifactId>spongeapi</artifactId>
-            <version>${sponge.version}</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Chitchat -->
+        <dependency>
+            <groupId>com.demigodsrpg</groupId>
+            <artifactId>chitchat</artifactId>
+            <version>${chitchat.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Infractions Base -->
@@ -40,10 +58,18 @@
             <version>${version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- BitlyJ -->
+        <dependency>
+            <groupId>com.rosaloves</groupId>
+            <artifactId>bitlyj</artifactId>
+            <version>2.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>InfractionsSpongeAPI</finalName>
+        <finalName>InfractionsSpigotAPI</finalName>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
         <plugins>
