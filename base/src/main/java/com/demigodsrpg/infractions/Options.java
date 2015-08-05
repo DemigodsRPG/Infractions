@@ -4,6 +4,8 @@ package com.demigodsrpg.infractions;
  * Interface for a config object.
  */
 public interface Options {
+    String serverName();
+
     String databaseUrl();
 
     int maxScore();

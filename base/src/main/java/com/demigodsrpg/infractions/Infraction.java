@@ -26,6 +26,8 @@ public final class Infraction {
     String proof;
     @Iciql.IQColumn(name = "player_id", length = 255)
     String player;
+    @Iciql.IQColumn(name = "issuer_id", length = 255)
+    String issuer;
 
     // -- CONSTRUCTORS -- //
 
@@ -33,13 +35,14 @@ public final class Infraction {
         // Empty constructor for Iciql.
     }
 
-    public Infraction(int value, long time, String origin, String reason, String proof, UUID player) {
+    public Infraction(int value, long time, String origin, String reason, String proof, UUID player, UUID issuer) {
         this.value = value;
         timeStamp = new Timestamp(time);
         this.origin = origin;
         this.reason = reason;
         this.proof = proof;
         this.player = player.toString();
+        this.issuer = issuer.toString();
     }
 
     // -- GETTERS -- //
@@ -74,6 +77,10 @@ public final class Infraction {
 
     public UUID getPlayer() {
         return UUID.fromString(player);
+    }
+
+    public UUID getIssuer() {
+        return UUID.fromString(issuer);
     }
 
     public PlayerRecord getPlayerRecord(Backend backend) {

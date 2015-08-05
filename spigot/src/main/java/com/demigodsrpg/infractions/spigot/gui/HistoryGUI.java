@@ -22,7 +22,6 @@ import com.demigodsrpg.infractions.Infraction;
 import com.demigodsrpg.infractions.PlayerRecord;
 import com.demigodsrpg.infractions.spigot.InfractionsSpigot;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -33,6 +32,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -69,19 +69,20 @@ public class HistoryGUI implements InventoryGUI {
         Iterator<Infraction> infractions = record.getInfractions().iterator();
         while (infractions.hasNext()) {
             Infraction infraction = infractions.next();
-            int value = infraction.getValue();
-            String reason = infraction.getReason();
-            String origin = infraction.getOrigin();
-            String proof = infraction.getProof();
-            Timestamp time = infraction.getTimeStamp();
+            final int value = infraction.getValue();
+            final String reason = infraction.getReason();
+            final String origin = infraction.getOrigin();
+            final String proof = infraction.getProof();
+            final Timestamp time = infraction.getTimeStamp();
+            final String issuer = Bukkit.getOfflinePlayer(infraction.getIssuer()).getName();
 
             items.add(count, new ItemStack(getMaterial(value), 1) {
                 {
                     ItemMeta meta = getItemMeta();
                     meta.setDisplayName(reason);
-                    List<String> lore = Lists.newArrayList(ChatColor.AQUA + origin, ChatColor.YELLOW + "Value: " + ChatColor.LIGHT_PURPLE + value,
-                            time.toGMTString(), "Proof: " + proof);
-                    meta.setLore(lore);
+                    meta.setLore(Arrays.asList(ChatColor.AQUA + origin, ChatColor.YELLOW + "Value: " +
+                                    ChatColor.LIGHT_PURPLE + "-" + value + "%", time.toGMTString(), "Proof: " + proof,
+                            "Issuer: " + issuer));
                     setItemMeta(meta);
                 }
             });

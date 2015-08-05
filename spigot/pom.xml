@@ -69,9 +69,19 @@
     </dependencies>
 
     <build>
-        <finalName>InfractionsSpigotAPI</finalName>
+        <finalName>InfractionsSpigot</finalName>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources/</directory>
+                <includes>
+                    <include>*.yml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -86,12 +96,21 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>com.demigodsrpg.infractions:infractions-base</include>
+                                    <include>com.demigodsrpg:infractions-base</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

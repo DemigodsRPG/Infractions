@@ -2,6 +2,9 @@
 # This is not the end all of all customization, we recommend using the spigot/sponge API on each server with a custom plugin.
 # @authors: HmmmQuestionMark
 
+# Server
+server: 'My Minecraft Server'
+
 # Database
 database:
   url: 'postgresql://localhost:5432/minecraft?user=minecraft&password=minecraft'

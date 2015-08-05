@@ -51,7 +51,7 @@ public final class PlayerRecord {
         Human player = backend.getPlayer(playerId);
         Options config = backend.getOptions();
 
-        if (getScore() > config.maxScore()) {
+        if (config.maxScore() - getScore() <= 0) {
             String banMessage = config.banMessage();
             if (config.canKick()) {
                 player.kick(banMessage);
@@ -59,15 +59,16 @@ public final class PlayerRecord {
                 player.sendMessage(banMessage);
             }
             return RecordModifyResult.SHOULD_BAN;
-        } else if (getScore() > before) {
+        } else if (getScore() < before) {
             String warnMessage = config.warnMessage();
+            warnMessage = warnMessage.replace("%reason%", "HAX"); // FIXME
             if (config.canKick()) {
                 player.kick(warnMessage);
             } else {
                 player.sendMessage(warnMessage);
             }
             return RecordModifyResult.WARNED;
-        } else if (getScore() < before) {
+        } else if (getScore() > before) {
             return RecordModifyResult.FORGIVEN;
         } else {
             return RecordModifyResult.NO_CHANGE;
@@ -96,9 +97,9 @@ public final class PlayerRecord {
     }
 
     public int getScore() {
-        int score = 0;
+        int score = backend.getOptions().maxScore();
         for (Infraction infraction : getInfractions()) {
-            score += infraction.getValue();
+            score -= infraction.getValue();
         }
         return score;
     }

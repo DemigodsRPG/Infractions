@@ -14,8 +14,13 @@ public class SpigotOptions implements Options {
     }
 
     @Override
+    public String serverName() {
+        return configuration.getString("server", "My Minecraft Server");
+    }
+
+    @Override
     public String databaseUrl() {
-        return configuration.getString("database.url", "postgresql://localhost:5432/minecraft?user=minecraft&password=minecraft");
+        return "jdbc:" + configuration.getString("database.url", "postgresql://localhost:5432/minecraft?user=minecraft&password=minecraft");
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.demigodsrpg.infractions.spigot;
 
+import com.demigodsrpg.chitchat.Chitchat;
 import com.demigodsrpg.infractions.Backend;
+import com.demigodsrpg.infractions.spigot.chitchat.ReputationTag;
 import com.demigodsrpg.infractions.spigot.command.CiteCommand;
 import com.demigodsrpg.infractions.spigot.command.HistoryCommand;
 import com.demigodsrpg.infractions.spigot.command.InfractionsCommand;
@@ -26,6 +28,9 @@ public class InfractionsSpigot extends JavaPlugin {
         getCommand("cite").setExecutor(new CiteCommand(BACKEND));
         getCommand("uncite").setExecutor(new UnciteCommand(BACKEND));
         getCommand("history").setExecutor(new HistoryCommand(BACKEND));
+
+        // Register Chitchat tags
+        Chitchat.getChatFormat().add(new ReputationTag(BACKEND.getOptions()));
     }
 
     @Override
