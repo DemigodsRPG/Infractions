@@ -1,8 +1,8 @@
 name: Infractions
-main: InfractionsSpigot
+main: com.demigodsrpg.infractions.InfractionsP
 version: ${project.version}
 authors: [HmmmQuestionMark]
-depends: [Chitchat]
+softdepends: [Chitchat]
 commands:
   infractions:
     use: /infractions
