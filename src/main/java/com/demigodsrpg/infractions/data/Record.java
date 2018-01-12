@@ -1,6 +1,6 @@
 package com.demigodsrpg.infractions.data;
 
-import com.demigodsrpg.infractions.InfractionsP;
+import com.demigodsrpg.infractions.InfractionsM;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
@@ -53,7 +53,7 @@ public class Record {
     }
 
     public List<Proof> getProof() {
-        Datastore db = InfractionsP.getDatastore();
+        Datastore db = InfractionsM.getDatastore();
         Query<Proof> query = db.createQuery(Proof.class).field("record").equal(this); // TODO does this work?
         return query.asList();
     }

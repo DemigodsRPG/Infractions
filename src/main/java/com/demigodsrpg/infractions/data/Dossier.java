@@ -1,7 +1,6 @@
 package com.demigodsrpg.infractions.data;
 
-import com.demigodsrpg.infractions.InfractionsP;
-import com.demigodsrpg.infractions.Options;
+import com.demigodsrpg.infractions.*;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -29,7 +28,7 @@ public class Dossier {
     public RecordModifyResult saveRecord(Record record) {
         int before = getScore();
 
-        Datastore db = InfractionsP.getDatastore();
+        Datastore db = InfractionsM.getDatastore();
         db.save(record);
 
         return processChange(before);
@@ -38,7 +37,7 @@ public class Dossier {
     public RecordModifyResult deleteRecord(Record record) {
         int before = getScore();
 
-        Datastore db = InfractionsP.getDatastore();
+        Datastore db = InfractionsM.getDatastore();
         db.delete(record);
 
         return processChange(before);
@@ -83,7 +82,7 @@ public class Dossier {
     }
 
     public List<Record> getInfractions() {
-        Datastore db = InfractionsP.getDatastore();
+        Datastore db = InfractionsM.getDatastore();
         Query<Record> query = db.createQuery(Record.class).field("player").equal(playerId);
         return query.asList();
     }

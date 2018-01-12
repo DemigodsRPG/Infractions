@@ -1,7 +1,7 @@
 package com.demigodsrpg.infractions;
 
 public class Depends {
-    public static final String COM_MONGO = "org.mongodb";
+    public static final String ORG_MONGO = "org.mongodb";
     public static final String ORG_MONGO_MORPHIA = "org.mongodb.morphia";
     public static final String COM_ROSALOVES = "com.rosaloves";
 

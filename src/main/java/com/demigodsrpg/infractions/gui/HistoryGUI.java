@@ -61,7 +61,7 @@ public class HistoryGUI implements InventoryGUI {
             Record infraction = infractions.next();
             final int value = infraction.getValue();
             final String reason = infraction.getReason();
-            final Proof proof = infraction.getProof();
+            final List<Proof> proof = infraction.getProof(); // TODO
             final Date time = infraction.getDate();
             final String issuer = Bukkit.getOfflinePlayer(infraction.getIssuerId()).getName();
 
@@ -70,7 +70,8 @@ public class HistoryGUI implements InventoryGUI {
                     ItemMeta meta = getItemMeta();
                     meta.setDisplayName(reason);
                     meta.setLore(Arrays.asList(ChatColor.YELLOW + "Value: " +
-                                    ChatColor.LIGHT_PURPLE + "-" + value + "%", time.toGMTString(), "Proof: " + proof,
+                                    ChatColor.LIGHT_PURPLE + "-" + value + "%", time.toGMTString(), "Proof: " + proof
+                                    .get(0),
                             "Issuer: " + issuer));
                     setItemMeta(meta);
                 }

@@ -3,14 +3,9 @@ package com.demigodsrpg.infractions;
 import com.demigodsrpg.chitchat.Chitchat;
 import com.demigodsrpg.infractions.chitchat.ReputationTag;
 import com.demigodsrpg.infractions.command.*;
-import com.demigodsrpg.infractions.data.Proof;
-import com.demigodsrpg.infractions.data.Record;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.demigodsrpg.util.LibraryHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 
 public class InfractionsP extends JavaPlugin {
 
@@ -18,8 +13,6 @@ public class InfractionsP extends JavaPlugin {
 
     static InfractionsP INST;
     static Options OPTIONS;
-    static Morphia MORPHIA;
-    static Datastore DATA;
 
     // -- INITIALIZE -- //
 
@@ -27,8 +20,15 @@ public class InfractionsP extends JavaPlugin {
     public void onEnable() {
         INST = this;
 
+        // Handle Libraries
+        LibraryHandler lib = new LibraryHandler(this);
+        lib.addMavenLibrary(LibraryHandler.MAVEN_CENTRAL, Depends.ORG_MONGO, Depends.MONGODB, Depends.MONGODB_VER);
+        lib.addMavenLibrary(LibraryHandler.MAVEN_CENTRAL, Depends.ORG_MONGO_MORPHIA, Depends.MORPHIA,
+                Depends.MORPHIA_VER);
+        lib.addMavenLibrary(LibraryHandler.MAVEN_CENTRAL, Depends.COM_ROSALOVES, Depends.BITLYJ, Depends.BITLYJ_VER);
+
         // Initialize MongoDB
-        initMongo();
+        InfractionsM.initMongo();
 
         // Commands
         getCommand("infractions").setExecutor(new InfractionsCommand());
@@ -42,17 +42,6 @@ public class InfractionsP extends JavaPlugin {
         }
     }
 
-    private void initMongo() {
-        // Setup Morphia
-        MORPHIA = new Morphia();
-        MORPHIA.map(Record.class, Proof.class);
-
-        // Setup Datastore
-        MongoClientURI conn = new MongoClientURI(OPTIONS.databaseUrl());
-        DATA = MORPHIA.createDatastore(new MongoClient(conn), "infractions");
-        DATA.ensureIndexes();
-    }
-
     // -- DISABLE -- //
 
     @Override
@@ -64,10 +53,6 @@ public class InfractionsP extends JavaPlugin {
 
     public static InfractionsP getInstance() {
         return INST;
-    }
-
-    public static Datastore getDatastore() {
-        return DATA;
     }
 
     public static Options getOptions() {
