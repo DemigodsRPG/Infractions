@@ -28,7 +28,7 @@ public class Dossier {
     public RecordModifyResult saveRecord(Record record) {
         int before = getScore();
 
-        Datastore db = InfractionsM.getDatastore();
+        Datastore db = InfractionsDB.getDatastore();
         db.save(record);
 
         return processChange(before);
@@ -37,7 +37,7 @@ public class Dossier {
     public RecordModifyResult deleteRecord(Record record) {
         int before = getScore();
 
-        Datastore db = InfractionsM.getDatastore();
+        Datastore db = InfractionsDB.getDatastore();
         db.delete(record);
 
         return processChange(before);
@@ -82,7 +82,7 @@ public class Dossier {
     }
 
     public List<Record> getInfractions() {
-        Datastore db = InfractionsM.getDatastore();
+        Datastore db = InfractionsDB.getDatastore();
         Query<Record> query = db.createQuery(Record.class).field("player").equal(playerId);
         return query.asList();
     }

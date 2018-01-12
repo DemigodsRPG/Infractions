@@ -28,7 +28,7 @@ public class InfractionsP extends JavaPlugin {
         lib.addMavenLibrary(LibraryHandler.MAVEN_CENTRAL, Depends.COM_ROSALOVES, Depends.BITLYJ, Depends.BITLYJ_VER);
 
         // Initialize MongoDB
-        InfractionsM.initMongo();
+        InfractionsDB.initMongo();
 
         // Commands
         getCommand("infractions").setExecutor(new InfractionsCommand());

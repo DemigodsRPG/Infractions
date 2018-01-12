@@ -9,7 +9,7 @@ import org.mongodb.morphia.Morphia;
 
 import static com.demigodsrpg.infractions.InfractionsP.OPTIONS;
 
-public class InfractionsM {
+public class InfractionsDB {
 
     // -- STATIC OBJECTS -- //
 
